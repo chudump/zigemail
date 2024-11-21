@@ -1,4 +1,4 @@
-package "github.com/chudump/zigemail/cliq"
+package cliq
 
 import (
 	"bytes"
