@@ -16,11 +16,11 @@ func (c CLIQ_CONFIG) CliqEndpoint() string {
 	return fmt.Sprintf("%s?zapikey=%s", c.WebhookEndpoint, c.ZAPIKey)
 }
 
-func SendMessageToCliq(heading string, message string, config CLIQ_CONFIG) error {
+func (c CLIQ_CONFIG) SendMessageToCliq(heading string, message string) error {
 	payload, _ := json.Marshal(map[string]string{
 		"text": "*" + heading + "*\n\n" + message,
 	})
-	resp, err := http.Post(config.CliqEndpoint(), "application/json", bytes.NewBuffer(payload))
+	resp, err := http.Post(c.CliqEndpoint(), "application/json", bytes.NewBuffer(payload))
 	if err != nil {
 		return err
 	}
